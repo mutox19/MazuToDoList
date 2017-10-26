@@ -1,3 +1,34 @@
+MazuTodoList
+
+this is a simple todo list
+
+Getting Started
+
+To get started simply download or clone the repo by clicking the green download button
+
+Setting up app
+
+Open up command prompt
+
+Navigate to the root directory and run the following command:
+
+Npm install
+
+It will install the dependencies needed
+
+How To's
+
+Register a user by click the register button from the side menu
+fill in all details and click register me! once your redirected you should be able to log in with the newly created account.
+
+Log in
+You can log in by filling in the email and password textboxes and clicking login
+you will be redirect to the todo list
+
+Todo
+Users can add a new task by enter there task name in the textbox area and clicking add new task
+user specific task will be displayed below the textbox, allowing users to view there task 
+
 This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
 ## How to use this template
