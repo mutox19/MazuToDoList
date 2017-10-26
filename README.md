@@ -12,12 +12,12 @@ Open up command prompt
 
 Navigate to the root directory and run the following command:
 
-Npm install
+<strong>Npm install</strong>
 
-It will install the dependencies needed
+It will install all the dependencies needed
 
 <h2>Running the app</h2>
-ionic cordova run android --livereload
+<strong>ionic cordova run android --livereload</strong>
 
 <h2>How To's</h2>
 
@@ -36,5 +36,5 @@ user specific task will be displayed below the textbox, allowing users to view t
 
 Users can test the app by going to command prompt and typing 
 
-npm test
+<strong>npm test</strong>
 
