@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content><h2 style="text-align:center;">Welcome Please Login</h2>
+  <ion-grid>
+    <ion-row justify-content-center> 
+      <ion-list>
+          <ion-col col-12 col-md>
+              <ion-item>
+                  <ion-input type="username" placeholder="Email" [(ngModel)]="email"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-12 col-md>
+                <ion-item>
+                    <ion-input type="password" placeholder="Password" [(ngModel)]="userPassword"></ion-input>
+                  </ion-item>
+            </ion-col>
+            <ion-col col-12 col-md>
+                <button ion-button full (click)='LoginUser();'>login</button>
+            </ion-col>
+            <ion-col col-12 col-md>
+                <button ion-button full [navPush]="RegisterPage">Register</button>
+            </ion-col>
+      </ion-list>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Todo</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" placeholder="new todo" width="50px" [(ngModel)]="toDo"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <button ion-button (click)='AddNewTask();'>Add New Task</button>
+
+  <ion-list>
+      <ion-item *ngFor="let list of allTask">
+        <h2 item-start>{{list.name}}</h2>
+        <button item-end ion-button  (click)="Remove($event, list)">X</button>
+      </ion-item>
+  </ion-list>
+
+</ion-content>
