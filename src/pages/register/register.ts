@@ -17,11 +17,18 @@ export class RegisterPage
   userNewPassword: string;
   email: string;
   allUsers = [];
-  newRegistration = {};
+
 
   constructor(public navCtrl: NavController, private databaseprovider: DatabaseProvider, private toast: Toast)
   {
-
+    this.databaseprovider.GetDatabaseState().subscribe(rdy => 
+      {
+     if (rdy) 
+     {
+       //if the database is ready load the users table
+       this.GetAllUsers();
+     }
+        });
   }
 
   GetAllUsers()
@@ -30,49 +37,60 @@ export class RegisterPage
       this.allUsers = data;
     })
   }
-
   Register()
   {
     //register the new user
       this.AddNewUser();
   }
 
+  isEmpty(value){
+    return (value == null || value.length === 0);
+  }
   AddNewUser()
   {
+    var userNameErr = false;
+    var userEmailErr = false;
+    var userPassErr = false;
 
     //check to see if user filled out all information
-    if(this.userName == null || this.email == null || this.userNewPassword == null)
+    if(this.isEmpty(this.userName))
+    {
+        userNameErr = true;
+    }
+    if(this.isEmpty(this.email))
+    {
+        userEmailErr = true;
+    }
+    if(this.isEmpty(this.userNewPassword))
+    {
+        userPassErr = true;
+    }
+    
+    //check to see if there is a error in the form
+    if(userNameErr == true || userEmailErr == true  || userPassErr == true)
     {
       this.toast.show(`Sorry you have to fill in all information`, '5000', 'center').subscribe(
         toast => {
         console.log(toast);
         });
-  
     }
-    else if (this.userName!= null || this.email != null || this.userNewPassword != null)
+    else
     {
-
-      this.toast.show(this.userName + " " + this.email + " " + this.userNewPassword, '5000', 'center').subscribe(
-        toast => {
-        console.log(toast);
-        });
-      
+      //insert new user
       this.databaseprovider.AddNewUser(this.userName, this.email, this.userNewPassword)
       .then(data => 
         {
-          this.toast.show(`New User Registered`, '5000', 'center').subscribe(
+
+          this.toast.show("New User Added", '5000', 'center').subscribe(
           toast => {
           console.log(toast);
           });
-          
-          //navigate to the home page
+          //navigate to the login page
           this.navCtrl.push(LoginPage, {
             
             });
   
       });
-      this.GetAllUsers();
-      this.newRegistration = {};
     }
     
   }

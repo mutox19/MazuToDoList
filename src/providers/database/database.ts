@@ -59,30 +59,27 @@ export class DatabaseProvider
            this.databaseReady.next(true);
 
            this.storage.set('database_filled', true);
-           this.toast.show(`infilldata`, '5000', 'center').subscribe(
-             toast => {
-             console.log(toast);
-             }
-             );
+         
          })
          .catch(e => console.error(e) );
      });
  }
 
- //insert a new user on registration
- AddNewUser(userName, email, password) 
- {
-     let data = [userName, email, password]
-     return this.database.executeSql("INSERT INTO Users (userName, email, password) VALUES (?, ?, ?)", data).then(data => {
-       return data;
-     }, err => {
-       console.log('Error: ', err);
-       return err;
-     });
-  }
+  //insert a new user on registration
+  AddNewUser(userName, email, password) 
+  {
+      let data = [userName, email, password]
+      return this.database.executeSql("INSERT INTO Users (userName, email, password) VALUES (?, ?, ?)", data).then(data => {
+        return data;
+      }, err => {
+        console.log('Error: ', err);
+        return err;
+      });
+   }
 
    //get all the users in the user table
  getAllUsers() {
+
     return this.database.executeSql("SELECT * FROM Users", []).then((data) => {
       let users = [];
       if (data.rows.length > 0) {
@@ -97,22 +94,25 @@ export class DatabaseProvider
     });
   }
 
-  //log user in
-  GetUsers(loggedEmail, loggedPassword)
-  {
-    return this.database.executeSql("SELECT * FROM Users WHERE email='"+loggedEmail+"'"+"AND password='"+loggedPassword+"'", []).then((data) => {
-      let users = [];
-      if (data.rows.length > 0) {
-        for (var i = 0; i < data.rows.length; i++) {
-          users.push({ userName: data.rows.item(i).userName, email: data.rows.item(i).email, password: data.rows.item(i).password });
-        }
-      }
-      return users;
-    }, err => {
-      console.log('Error: ', err);
-      return err;
-    });
-  }
+  //log user in with email and password
+ GetUser(loggedEmail, loggedPassword)
+ {
+  //query the database for the user credentials and return user info
+   return this.database.executeSql("SELECT * FROM Users WHERE email='"+loggedEmail+"'"+"AND password='"+loggedPassword+"'", []).then((data) => {
+     let users = [];
+     if (data.rows.length > 0) 
+    {
+       for (var i = 0; i < data.rows.length; i++) 
+       {
+         users.push({ userName: data.rows.item(i).userName, email: data.rows.item(i).email, password: data.rows.item(i).password });
+       }
+     }
+     return users;
+   }, err => {
+     console.log('Error: ', err);
+     return err;
+   });
+ }
 
   //add a new task for the current logged user
   AddNewTask(name, email) {
@@ -125,10 +125,11 @@ export class DatabaseProvider
       });
     }
 
-
+    //get the logged in users task
     GetUserTask(loggedEmail)
     {
 
+      //return task that equal to the current logged email
       return this.database.executeSql("SELECT * FROM Todo WHERE email='"+loggedEmail+"'", []).then((data) => {
         let alltasks = [];
         if (data.rows.length > 0) {
@@ -143,10 +144,10 @@ export class DatabaseProvider
       });
     }
     
-
+    //deletes currently logged in users task
     UserDeleteTask(toDeleteTask)
     {
-      
+      //deletes task for the specific id
       return this.database.executeSql("DELETE FROM Todo WHERE id='"+toDeleteTask+"'", []).then((data) => {
         let alltasks = [];
         if (data.rows.length > 0) {
@@ -160,8 +161,8 @@ export class DatabaseProvider
         return err;
       });
     }
-    
-    //get data
+
+    //return the state of the database
   GetDatabaseState() 
   {
     return this.databaseReady.asObservable();

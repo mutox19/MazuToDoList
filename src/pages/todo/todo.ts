@@ -51,18 +51,21 @@ export class TodoPage {
     }
     else
     {
+      // Insert a new task
         this.databaseprovider.AddNewTask(this.toDo, this.currentLoggedEmail)
         .then(data => 
         {
           
-          this.toast.show(this.toDo, '5000', 'center').subscribe(
+          this.toast.show("New Task Added", '5000', 'center').subscribe(
             toast => {
             
             console.log(toast);
             });
+            
             //reload the task table
             this.GetAllUserTaskData();
         });
+        this.toDo = null;
     }
   }
 
@@ -76,7 +79,7 @@ export class TodoPage {
   //remove the selected task from the database
   Remove($event, list)
   {
-
+    //change list.id to a string and delete that id 
     var deleteUserId = JSON.stringify(list.id);
     this.databaseprovider.UserDeleteTask(deleteUserId).then(data => {
       this.GetAllUserTaskData();
