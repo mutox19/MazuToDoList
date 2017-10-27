@@ -1,6 +1,6 @@
 <h1>MazuTodoList</h1>
 
-<p>this is a simple todo list</p>
+<p>This is a simple todo list</p>
 
 <h2>Getting Started</h2>
 
@@ -15,7 +15,8 @@ Open up command prompt and navigate to the root directory,run the following comm
 It will install all the dependencies needed
 
 <h2>Running the app</h2>
-currently the app has only been tested in and ran in android.<br >
+currently the app has only been tested in and ran in android.
+
 <strong>ionic cordova run android --livereload</strong>
 
 <h2>How To's</h2>
@@ -39,8 +40,8 @@ Users can test the app by going to command prompt and typing
 <p>the browser will open up, when the browser displays connected, click on debug. This will allow users to see the different tests cases</p>
 
 <h2>Some future iterations</h2>
-<p>for the purpose of this being a simple todo list</p>
+<p>For the purpose of this being a simple todo list</p>
 <ul>
   <li>Adding of a logout button, this will allow users to logout from the app when on the todo page</li>
-  <li>allow users to click the task and be able to see the task details</li>
+  <li>Allow users to click the task and be able to see the task details</li>
 </ul>
