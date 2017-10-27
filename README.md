@@ -15,7 +15,7 @@ Open up command prompt and navigate to the root directory,run the following comm
 It will install all the dependencies needed
 
 <h2>Running the app</h2>
-currently the app has only been tested in and ran in android.<br>
+currently the app has only been tested in and ran in android. <br >
 
 <strong>ionic cordova run android --livereload</strong>
 
@@ -35,7 +35,9 @@ You can log in by filling in the email and password textboxes and clicking login
 <ul><li>clicking the x beside a task will allow users to delete the specific task</li></ul>
 
 <h2>Setting up testing enviroment</h2>
+
 Users can test the app by going to command prompt and typing<br>
+
 <strong>npm test</strong><br>
 
 <p>the browser will open up, when the browser displays connected, click on debug. This will allow users to see the different tests cases</p>
